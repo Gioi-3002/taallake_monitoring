@@ -248,7 +248,9 @@ Area dello specchio d'acqua nel 2023 :Metri quadri (m²): 838040.4 ;Ettari (ha):
 ## 4.Analisi comparativa
 ### 4.1 variazione dell'NDVI 2023-25
 ```R
+#rialineamento del raster 
 ndvi2023_allineato<-resample(ndvi2023, ndvi2025)
+#calcolo della differenza
 ndvi_diff<-ndvi2025-ndvi2023_allineato
 tavolozza_diff<- colorRampPalette(c("red", "yellow", "white", "lightgreen", "darkgreen"))
 plot(ndvi_diff,main = "Variazione dell'NDVI dal 2023 al 2025",col = tavolozza_diff(100))
