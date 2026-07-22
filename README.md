@@ -39,8 +39,12 @@ $$\text{MNDWI} = \frac{\text{GREEN (Banda 3)} - \text{SWIR1 (Banda 11)}}{\text{G
 
 Prima di procedere con il calcolo degli indici spettrali, è stata condotta un'analisi esplorativa per visualizzare il comportamento spettrale del territorio e combinare le diverse lunghezze d'onda.
 
+### 1. Visualizzazione delle bande
+Tramite la combinazione delle bande della matrice raster è possibile mettere in risalto caratteristiche fisiche differenti:
+* **Colori Naturali (Banda 4-Red, Banda 3-Green, Banda 2-Blue):** Riproduce la visione dell'occhio umano.
+* **Falsi Colori / Infrarosso Vicino (NIR - Banda 8):** Evidenzia lo stato della vegetazione in rosso acceso e crea un fortissimo contrasto con la superficie dell'acqua.
 
-### 1. Composizioni RGB (Natural Color vs False Color)
+### 2. Composizioni RGB (Natural Color vs False Color)
 Tramite la combinazione delle bande della matrice raster è possibile mettere in risalto caratteristiche fisiche differenti:
 * **Colori Naturali (Banda 4-Red, Banda 3-Green, Banda 2-Blue):** Riproduce la visione dell'occhio umano.
 * **Falsi Colori / Infrarosso Vicino (NIR - Banda 8):** Evidenzia lo stato della vegetazione in rosso acceso e crea un fortissimo contrasto con la superficie dell'acqua.
