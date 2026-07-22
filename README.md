@@ -5,8 +5,18 @@
 ## Introduzione e obiettivi
 La riserva naturale del lago di Pergusa è stata istituita al fine di salvaguardare il bacino pergusino e le relative floro-faunistiche. Attualmente ha un perimetro di 4.5km una profondità di 3.5 metri e massima di 12 non avendo immissari e emissari ha un livello legato al regime pluviometrico e all'evaporazione sopratutto estiva questo lo rende uno degli esempi più adatti a mostrare come la crisi idrica che ha colpito la Sicilia tra il 2024 e il 2025, abbia portato delle conseguenze a livello di ri
 L'analisi ha dunque l'obiettivo di studiare gli effetti della grave crisi idrica che ha colpito il lago di Pergusa e tutta la Sicilia nel 2024 mettendo a confronto i dati satellitari **Sentinel-2** acquisiti nel **2023** (pre-crisi) e nel **2025** (crisi conclamata).
-## Metodologia ed Indici Spettrali
 
+## Acquisizione Dati e Piattaforma
+I dati satellitari utilizzati nell'analisi provengono dalla costellazione **Sentinel-2** del programma europeo Copernicus:
+* **Download:** Le bande spettrali singole sono state individuate e scaricate da **Copernicus Browser** (*Copernicus Data Space Ecosystem*), selezionando scene prive di copertura nuvolosa sull'area d'interesse.
+* **Bande Selezionate:** 
+  * `B02` (Blu - 10m)
+  * `B03` (Verde - 10m)
+  * `B04` (Rosso - 10m)
+  * `B08` (NIR - Infrarosso Vicino - 10m)
+  * `B11` (SWIR1 - Infrarosso di Onda Corta - 20m)
+  
+## Metodologia ed Indici Spettrali
 L'analisi è stata condotta in ambiente **R**.
 ### Pacchetti R Utilizzati
 * **`terra`**: Gestione, calcolo dell'algebra dei raster e geodesia spaziale.
@@ -25,3 +35,12 @@ $$\text{MNDWI} = \frac{\text{GREEN (Banda 3)} - \text{SWIR1 (Banda 11)}}{\text{G
 
 > **Estrazione Maschera d'Acqua:** Applicando la condizione $\text{MNDWI} > 0$, è stato possibile isolare la sola superficie occupata dal lago per entrambi gli anni.
 
+## Visualizzazione e Analisi Esplorativa delle Bande
+
+Prima di procedere con il calcolo degli indici spettrali, è stata condotta un'analisi esplorativa per visualizzare il comportamento spettrale del territorio e combinare le diverse lunghezze d'onda.
+
+
+### 1. Composizioni RGB (Natural Color vs False Color)
+Tramite la combinazione delle bande della matrice raster è possibile mettere in risalto caratteristiche fisiche differenti:
+* **Colori Naturali (Banda 4-Red, Banda 3-Green, Banda 2-Blue):** Riproduce la visione dell'occhio umano.
+* **Falsi Colori / Infrarosso Vicino (NIR - Banda 8):** Evidenzia lo stato della vegetazione in rosso acceso e crea un fortissimo contrasto con la superficie dell'acqua.
