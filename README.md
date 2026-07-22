@@ -63,7 +63,7 @@ plot(b4, col=viridis(100), main="B04-red", plg=list(shrink=1, cex=0.5))
 plot(b8, col=viridis(100), main="B08-NIR",plg=list(shrink=1, cex=0.5))
 plot(b11, col=viridis(100), main="B11-SWIR1",plg=list(shrink=1, cex=0.5))
 ```
-![Bande spettrali 2023](img:/visualizzazionebande2023.png)
+![Bande spettrali 2023](lagodipergusa/img:/visualizzazionebande2023.png)
 
 ### 2. Composizioni RGB (Natural Color vs False Color)
 Tramite la combinazione delle bande della matrice raster è possibile mettere in risalto caratteristiche fisiche differenti:
