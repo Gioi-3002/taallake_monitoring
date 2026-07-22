@@ -4,6 +4,7 @@
 ## Introduzione e obiettivi
 La riserva naturale del lago di Pergusa è stata istituita al fine di salvaguardare il bacino pergusino e le relative floro-faunistiche. Attualmente ha un perimetro di 4.5km una profondità di 3.5 metri e massima di 12 non avendo immissari e emissari ha un livello legato al regime pluviometrico e all'evaporazione sopratutto estiva questo lo rende uno degli esempi più adatti a mostrare come la crisi idrica che ha colpito la Sicilia tra il 2024 e il 2025, abbia portato delle conseguenze a livello di ri
 L'analisi ha dunque l'obiettivo di studiare gli effetti della grave crisi idrica che ha colpito il lago di Pergusa e tutta la Sicilia nel 2024 mettendo a confronto i dati satellitari **Sentinel-2** acquisiti nel **2023** (pre-crisi) e nel **2025** (crisi conclamata).
+---
 ## Metodologia
 L'analisi è stata condotta in ambiente **R**.
 ### Pacchetti R Utilizzati
