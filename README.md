@@ -40,9 +40,30 @@ $$\text{MNDWI} = \frac{\text{GREEN (Banda 3)} - \text{SWIR1 (Banda 11)}}{\text{G
 Prima di procedere con il calcolo degli indici spettrali, è stata condotta un'analisi esplorativa per visualizzare il comportamento spettrale del territorio e combinare le diverse lunghezze d'onda.
 
 ### 1. Visualizzazione delle bande
-Tramite la combinazione delle bande della matrice raster è possibile mettere in risalto caratteristiche fisiche differenti:
-* **Colori Naturali (Banda 4-Red, Banda 3-Green, Banda 2-Blue):** Riproduce la visione dell'occhio umano.
-* **Falsi Colori / Infrarosso Vicino (NIR - Banda 8):** Evidenzia lo stato della vegetazione in rosso acceso e crea un fortissimo contrasto con la superficie dell'acqua.
+```R
+setwd("/Users/gioialoscalzo/Desktop/Lagodipergusa/2023_pre")
+dir()
+#caricamento delle librerie
+library(terra)
+library(viridis)
+library(imageRy)
+library(patchwork)
+library(ggplot2)
+#importazione file raster
+b2<-rast("B02_23.tiff")
+b3<-rast("B03_23.tiff")
+b4<-rast("B04_23.tiff")
+b8<-rast("B08_23.tiff")
+b11<-rast("B11_23.tiff")
+#visualizzazione delle bande con la palette Viridis
+im.multiframe(2,3)
+plot(b2, col=viridis(100), main="B02-blue", plg=list(shrink=1, cex=0.5))
+plot(b3, col=viridis(100), main="B03-green", plg=list(shrink=1, cex=0.5))
+plot(b4, col=viridis(100), main="B04-red", plg=list(shrink=1, cex=0.5))
+plot(b8, col=viridis(100), main="B08-NIR",plg=list(shrink=1, cex=0.5))
+plot(b11, col=viridis(100), main="B11-SWIR1",plg=list(shrink=1, cex=0.5))
+```
+![Bande spettrali 2023](img/visualizzazionebande2023.png)
 
 ### 2. Composizioni RGB (Natural Color vs False Color)
 Tramite la combinazione delle bande della matrice raster è possibile mettere in risalto caratteristiche fisiche differenti:
