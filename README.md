@@ -5,7 +5,6 @@
 ## Introduzione e obiettivi
 La riserva naturale del lago di Pergusa è stata istituita al fine di salvaguardare il bacino pergusino e le relative floro-faunistiche. Non avendo immissari e emissari, ha un livello legato al regime pluviometrico e all'evaporazione sopratutto estiva questo lo rende uno degli esempi più adatti a mostrare come la crisi idrica che ha colpito la Sicilia tra il 2024 e il 2025, abbia portato delle conseguenze a livello di risorse idriche.
 L'analisi ha dunque l'obiettivo di studiare gli effetti della grave crisi idrica che ha colpito il lago di Pergusa così come la Sicilia nel 2024 mettendo a confronto i dati satellitari **Sentinel-2** acquisiti nel **2023** (pre-crisi) e nel **2025** (crisi conclamata).
-
 ## Acquisizione Dati e Piattaforma
 I dati satellitari utilizzati nell'analisi provengono dalla costellazione **Sentinel-2** del programma europeo Copernicus:
 * **Download:** Le bande spettrali singole sono state individuate e scaricate da **Copernicus Browser** (*Copernicus Data Space Ecosystem*), selezionando scene prive di copertura nuvolosa sull'area d'interesse.
@@ -95,7 +94,7 @@ plot(B4, col=viridis(100), main="B04-red", plg=list(shrink=1, cex=0.2))
 plot(B8, col=viridis(100), main="B08-NIR",plg=list(shrink=1, cex=0.2))
 plot(B11, col=viridis(100), main="B11-SWIR1",plg=list(shrink=1, cex=0.2))
 ```
-![Bande spettrali 2025](./img:/visualizzazionebande2025.png)
+![Bande spettrali 2025](./img:/visualizzazionebande20251.png)
 ```R
 #ggplot
 G2<-im.ggplot(B2)
