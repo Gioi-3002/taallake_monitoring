@@ -55,7 +55,7 @@ b3<-rast("B03_23.tiff")
 b4<-rast("B04_23.tiff")
 b8<-rast("B08_23.tiff")
 b11<-rast("B11_23.tiff")
-#visualizzazione delle bande con la palette Viridis
+#visualizzazione delle bande con la palette Viridis modifica delle opzioni della legenda
 im.multiframe(2,3)
 plot(b2, col=viridis(100), main="B02-blue", plg=list(shrink=1, cex=0.5))
 plot(b3, col=viridis(100), main="B03-green", plg=list(shrink=1, cex=0.5))
@@ -65,7 +65,7 @@ plot(b11, col=viridis(100), main="B11-SWIR1",plg=list(shrink=1, cex=0.5))
 ```
 ![Bande spettrali 2023](./img:/visualizzazionebande2023.png)
 ```R
-#ggplot
+#ggplot conversione dei dati del raster in un layout grafico
 g2<-im.ggplot(b2)
 g3<-im.ggplot(b3)
 g4<-im.ggplot(b4)
@@ -96,13 +96,13 @@ plot(B11, col=viridis(100), main="B11-SWIR1",plg=list(shrink=1, cex=0.2))
 ```
 ![Bande spettrali 2025](./img:/visualizzazionebande20251.png)
 ```R
-#ggplot
+#ggplot 
 G2<-im.ggplot(B2)
 G3<-im.ggplot(B3)
 G4<-im.ggplot(B4)
 G8<-im.ggplot(B8)
 G11<-im.ggplot(B11)
-#patchwork
+#patchwork combinazione dei grafici ggplot in una sola figura
 (G2+G3+G4)/(G8+G11)
 ```
 ![GGplot patchwork 2025](./img:/ggplot2025.png)
@@ -115,7 +115,7 @@ Tramite la combinazione delle bande della matrice raster è possibile mettere in
 #### Dati 2023
 ```R
 im.multiframe(1,3)
-#true colors
+#true colors visualizzazione a colori reali con funzione stretch per aumentare il contrasto visivo
 plotRGB(sentinel, r=3, g=2, b=1, stretch="lin", main="Colori Reali (RGB 432) 2023")
 #false colors
 plotRGB(sentinel, r=4, g=3, b=2, stretch="lin", main="Falsi Colori (RGB 843) 2023")
@@ -139,7 +139,9 @@ plotRGB(sentinel2, r=5, g=4, b=3, stretch="lin",main="Visualizzazione SWIR (Umid
 ### 1.3 Confronto tra le bande
 #### Dati 2023
 ```R
+#produzione di matrice di correlazione grafica se i punti formano una retta crescente le due bande sono fortemente correlate senno le due bande portano informazioni indipendenti 
 pairs(sentinel)
+#ggpairs lavora su un dataframe produce grafici più chiari
 library(GGally)
 ggpairs(sentinel)
 ```
@@ -166,6 +168,11 @@ hist(ndvi2023, main = "Distribuzione dei valori NDVI 2023",xlab = "Indice NDVI",
 ```
 ![NDVI2023 e Istogramma distribuzione dei pixel](./img:/NDVIhist2023.png)
 #### 2.2 NDVI 2025
+L'indice spaziale più utilizzato telerilevamento
+Da -1 a 0 Acqua, neve, nuvole o ombre
+Da 0 a 0.2 Suolo nudo, rocce asfalto ed edili
+Da 0.2 a 0.5 Vegetazione sparsa, prato, colture in fase iniziale 
+Da 0.5 a 1 Vegetazione fitta, foreste e colture molto rigogliose
 ```R
 im.multiframe(1,2)
 ndvi2025<-(B8-B4)/(B8+B4)
@@ -176,6 +183,9 @@ hist(ndvi2025,main = "Distribuzione dei valori NDVI 2025",xlab = "Indice NDVI",y
 ```
 ![NDVI2025 e Istogramma distribuzione dei pixel](./img:/NDVIhist2025.png)
 ### NMDWI
+Da 0.2 a 1 Acqua libera 
+Da 0.0 a 0.2 Umidità elevata suolo bagnato
+Sotto 0.0 suolo asciutto rocce vegetazione edifici
 #### 2.3 NMDWI 2023
 ```R
 mndwi2023<-(b3-b11)/(b3+b11)
@@ -194,17 +204,21 @@ plot(mndwi2025, main = "MNDWI - Indice Acqua Modificato 2025", col=tavolozza_mnd
 ## 3. Estratto specchio d'acqua e calcolo dell'area del lago
 ### 3.1 2023
 ```R
-#estratto specchio d'acqua 2023
+#estratto specchio d'acqua 2023 applicazione if else su ogni pixel imposto come condizione logica i valori di mndwi2023 maggiori di 0 e restituisce il valore 1 se la condizione è vera mentre NA se è falsa
 acqua_maschera <- ifel(mndwi2023 > 0, 1, NA)
 plot(acqua_maschera,main = "Specchio d'Acqua Estratto (MNDWI > 0)2023",col = "blue")
 ```
 ![Grafico che estrae solo i pixel dello specchio d'acqua nel 2023](./img:/estrattospecchio2023.png)
 ```R
 #area del lago 2023
+#calcolo area geografica reale coperta dai pixel
 area_info <- expanse(acqua_maschera, unit = "m")
+#estrae il valore numerico dell'area dalla tabella creata da expanse
 area_mq <- area_info$area
+#conversione im ettari e chilometri quadrati
 area_ettari <- area_mq / 10000
 area_km2 <- area_mq / 1000000
+#formattazione e stampa del testo
 cat("Area dello specchio d'acqua:\n")
 cat("- Metri quadri (m²):", round(area_mq, 2), "\n")
 cat("- Ettari (ha):", round(area_ettari, 2), "\n")
